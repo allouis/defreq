@@ -1,6 +1,6 @@
 ;(function (win) {
     var ext, store = {}, mults = {}, type, out;
-    if(_ && typeof _.define == "undefined" && typeof _.require == "undefined"){ ext = _ }
+    if(win._ && typeof _.define == "undefined" && typeof _.require == "undefined"){ ext = _ }
     else { ext = win }
     function define(name, func, mult){
         store[name] = func
