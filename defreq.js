@@ -8,7 +8,7 @@
     }
     function require(name){
         type = name
-        [].splice.call(arguments, 0, 1)
+        Array.prototype.splice.call(arguments, 0, 1)
         out = store[type](param) 
         if(mults[type]) return out
         store[type] = function(){
