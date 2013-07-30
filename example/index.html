@@ -15,8 +15,8 @@
         if(mult) mults[name] = true
     }
     function require(name){
-        args = Array.prototype.slice.call(arguments, 0, 1)
-        out = store[name] && store[name](args) 
+        args = Array.prototype.slice.call(arguments, 1)
+        out = store[name] && store[name].apply(null, args) 
         if(mults[name]) return out
         store[name] = function(){
             throw new Error("The module "+name+" has already been required")
@@ -32,7 +32,7 @@
 
 
 <script>
-define("module", function(){
+define("module", function(passedIn){
     var privateStuffs = 10;
 
     function test(){
@@ -43,7 +43,7 @@ define("module", function(){
         sayHi: function(){
             console.log("meow");
         },
-        name: "bagpuss"
+        name: passedIn
     }
 
     return {
@@ -58,7 +58,7 @@ define("module", function(){
 
 <script>
 
-var myMod = require("module");
+var myMod = require("module", "BagPuss");
 
 console.log(myMod.cat.name)
 myMod.cat.sayHi();
