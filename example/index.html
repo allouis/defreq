@@ -1,0 +1,69 @@
+<!doctype>
+<html>
+<head>
+</head>
+<body>
+<body>
+<script>
+
+;(function (win) {
+    var ext, store = {}, mults = {}, args, out;
+    if(win._ && typeof _.define == "undefined" && typeof _.require == "undefined"){ ext = _ }
+    else { ext = win }
+    function define(name, func, mult){
+        store[name] = func
+        if(mult) mults[name] = true
+    }
+    function require(name){
+        args = Array.prototype.slice.call(arguments, 0, 1)
+        out = store[name] && store[name](args) 
+        if(mults[name]) return out
+        store[name] = function(){
+            throw new Error("The module "+name+" has already been required")
+        }
+        return out
+    }
+    ext.define = define
+    ext.require = require
+}(this))
+
+</script>
+
+
+
+<script>
+define("module", function(){
+    var privateStuffs = 10;
+
+    function test(){
+        console.log(privateStuffs);
+    }
+
+    var cat = {
+        sayHi: function(){
+            console.log("meow");
+        },
+        name: "bagpuss"
+    }
+
+    return {
+        cat: cat,
+        get: test
+    }
+
+})
+</script>
+
+
+
+<script>
+
+var myMod = require("module");
+
+console.log(myMod.cat.name)
+myMod.cat.sayHi();
+
+</script>
+
+
+</html>
