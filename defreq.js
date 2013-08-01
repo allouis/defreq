@@ -28,7 +28,7 @@
         if(mult) mults[name] = true
     }
     function require(){
-        name = Array.prototype.splice.call(arguments, 0, 1)
+        name = Array.prototype.splice.call(arguments, 0, 1)[0]
         out = store[name] && store[name].apply(null, arguments) 
         if(mults[name]) return out
         store[name] = function(){
