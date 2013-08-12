@@ -10,12 +10,9 @@ Features:
 // optional parameters 'dep1', 'dep2', 'depN' are injected dependencies
 // optional parameter 'multiple' (bool) allows multiple instantiations
 define(id, function(dep1, dep2, depN...) {
-
     // The module code goes here
-
 }, multiple);
 ```
-
 - Modules are created with the keyword `require`
 ```js
 // optional parameters 'dep1', 'dep2', 'depN' are the dependencies
@@ -38,6 +35,8 @@ define('a', function(jq){
         name: name
     }
 });
-
+```
+main.js
+```js
 var a = require('a', $);
 ```
