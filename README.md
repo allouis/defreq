@@ -6,6 +6,7 @@ basic require define functionality
 Features:
 
 - Modules are defined with the keyword `define`
+
 ```js
 // optional parameters 'dep1', 'dep2', 'depN' are injected dependencies
 // optional parameter 'multiple' (bool) allows multiple instantiations
@@ -14,6 +15,7 @@ define(id, function(dep1, dep2, depN...) {
 }, multiple);
 ```
 - Modules are created with the keyword `require`
+
 ```js
 // optional parameters 'dep1', 'dep2', 'depN' are the dependencies
 var mod = require(id, dep1, dep2, depN...);
