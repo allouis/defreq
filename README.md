@@ -7,9 +7,9 @@ Features:
 
 - Modules are defined with the keyword `define`
 ```js
-// parameters dep1, dep2 are injected dependencies and are optional
-// parameter multiple (bool) allow multiple instantiations
-define('id' function(dep1, dep2, ...) {
+// optional parameters 'dep1', 'dep2', 'depN' are injected dependencies
+// optional parameter 'multiple' (bool) allows multiple instantiations
+define(id, function(dep1, dep2, depN...) {
 
     // The module code goes here
 
@@ -18,13 +18,12 @@ define('id' function(dep1, dep2, ...) {
 
 - Modules are created with the keyword `require`
 ```js
-// parameters dep1, dep2 are injected dependencies
-var mod = require('id', dep1, dep2, ....);
-var mod = require('id');
+// optional parameters 'dep1', 'dep2', 'depN' are the dependencies
+var mod = require(id, dep1, dep2, depN...);
+var mod = require(id);
 ```
 - It is not a loader, so files will need to be loaded
 - Modules are not singletons
-
 
 Sample Code
 
@@ -41,5 +40,4 @@ define('a', function(jq){
 });
 
 var a = require('a', $);
-
 ```
